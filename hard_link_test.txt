@@ -1,5 +1,0 @@
-this is hard link test
-
-edit one more
-
-git add
