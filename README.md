@@ -20,3 +20,4 @@ Terminal BackUp
 - .vimrc
 - .zcompdum
 - .zprofile
+- iTerm2 State.inermexport
