@@ -89,6 +89,7 @@ export LC_CTYPE=ko_KR.UTF-8  # 한글 입력을 위해 문자 인코딩을 한�
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
