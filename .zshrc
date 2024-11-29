@@ -123,6 +123,7 @@ alias ldk='lazydocker'
 alias t='tmux'
 alias live-server='npx live-server'
 alias cd='z'
+alias n='nvim'
 
 
 eval "$(zoxide init zsh)"
