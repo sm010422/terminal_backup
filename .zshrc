@@ -113,7 +113,8 @@ export PATH=/opt/homebrew/bin:$PATH
 export PATH=$PATH:~/.npm-global/bin
 
 
-neofetch
+# neofetch
+fastfetch
 
 # alias binding
 alias cat='bat --paging never'
