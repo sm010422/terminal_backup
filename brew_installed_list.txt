@@ -1,5 +1,6 @@
 
 command: brew list -1
+last update: 2024/12/09
 
 ==> Formulae
 abseil
