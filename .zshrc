@@ -70,7 +70,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions autojump web-search)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions autojump web-search direnv)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -113,10 +113,10 @@ export PATH=/opt/homebrew/bin:$PATH
 export PATH=$PATH:~/.npm-global/bin
 
 
-# neofetch
+# fastfetch
 fastfetch
 
-# alias binding
+# alias 
 alias cat='bat --paging never'
 alias gu='gitui'
 alias lg='lazygit'
@@ -126,7 +126,20 @@ alias live-server='npx live-server'
 alias cd='z'
 alias n='nvim'
 
+alias cl='clear'
+
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+
+alias lsa='lsd -lah'
+alias l='lsd -lah'
+alias ll='lsd -lh'
+alias la='lsd -lAh'
 
 eval "$(zoxide init zsh)"
+eval "$(atuin init zsh)"
+eval "$(direnv hook zsh)"
 
 source /Users/sangmin/.config/broot/launcher/bash/br
