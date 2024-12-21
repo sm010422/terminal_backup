@@ -70,7 +70,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions autojump web-search direnv)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-completions autojump web-search zoxide fzf-tab direnv fzf docker aws)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -138,8 +138,21 @@ alias l='lsd -lah'
 alias ll='lsd -lh'
 alias la='lsd -lAh'
 
+alias rr='ranger'
+
+# fzf-tab 설정
+zstyle ':completion:*' extra-dirs true
+zstyle ':fzf-tab:*' border rounded
+zstyle ':fzf-tab:complete:git-*' fzf-preview 'git show --color=always {} | less -R'
+zstyle ':fzf-tab:*' color 'bg+:#09ff00,fg+:#ffffff'
+zstyle ':fzf-tab:complete:(cd|pushd)' fzf-preview 'tree -C {} | head -200'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -lah $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd -lah $realpath'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
 eval "$(direnv hook zsh)"
+eval "$(fzf --zsh)"
 
 source /Users/sangmin/.config/broot/launcher/bash/br
