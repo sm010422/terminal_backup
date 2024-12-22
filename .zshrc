@@ -70,7 +70,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-completions autojump web-search zoxide fzf-tab direnv fzf docker aws)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-completions autojump web-search fzf-tab direnv fzf docker aws)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -142,13 +142,18 @@ alias rr='ranger'
 
 # fzf-tab 설정
 zstyle ':completion:*' extra-dirs true
-zstyle ':fzf-tab:*' border rounded
 zstyle ':fzf-tab:complete:git-*' fzf-preview 'git show --color=always {} | less -R'
 zstyle ':fzf-tab:*' color 'bg+:#09ff00,fg+:#ffffff'
-zstyle ':fzf-tab:complete:(cd|pushd)' fzf-preview 'tree -C {} | head -200'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -lah $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd -lah $realpath'
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+# zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+zstyle ':fzf-tab:*' border rounded
+zstyle ':fzf-tab:complete:*' fzf-preview-window 'right:70%:wrap'
+
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:*' fzf-preview-window 'up:100%:wrap'
+zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -al --icons=always --width=1 --color=always --long $realpath'
+
 
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
