@@ -133,9 +133,13 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
 
+# LSD config
+alias l='lsd -lah --git --date=+%Y-%m-%d\ %H:%M'
+alias lts='lsd -lah --git --date=+%Y-%m-%d\ %H:%M --total-size'
 alias lsa='lsd -lah'
-alias l='lsd -lah'
-alias ll='lsd -lh'
+# alias ll='lsd -lh'
+# alias ll='eza -alg --icons --git --all --time-style=long-iso'
+alias ll='eza -alg --icons --git --all --sort=newest --time-style=long-iso'
 alias la='lsd -lAh'
 
 alias rr='ranger'
@@ -152,7 +156,7 @@ zstyle ':fzf-tab:complete:*' fzf-preview-window 'right:70%:wrap'
 
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:*' fzf-preview-window 'up:100%:wrap'
-zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -al --icons=always --width=1 --color=always --long $realpath'
+zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -alg --icons=always --git --sort=oldest --time-style=long-iso --width=1 --color=always --long $realpath'
 
 
 eval "$(zoxide init zsh)"
