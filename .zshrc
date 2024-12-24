@@ -163,14 +163,11 @@ export FZF_CTRL_T_OPTS="
   --layout reverse \
   --info inline \
   --border \
-  --preview 'bat -n --color=always {}' \
+  --preview 'bat -n --color=always {} || eza -alg --icons=always --git --time-style=long-iso --width=1 --color=always --long {}' \
   --preview-window right,60% \
   --bind 'ctrl-/:change-preview-window(99%|hidden|)' \
   --color 'fg:#ffffff,fg+:#00FF00,bg:#000000,preview-bg:#000000,border:#ffffff'
 "
-
-# export FZF_CTRL_T_OPTS="
-#   --walker-skip .git,node_modules,target
 
 export FZF_CTRL_R_OPTS="
   --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
