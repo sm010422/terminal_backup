@@ -136,28 +136,46 @@ alias -g ......='../../../../..'
 # LSD config
 alias l='lsd -lah --git --date=+%Y-%m-%d\ %H:%M'
 alias lts='lsd -lah --git --date=+%Y-%m-%d\ %H:%M --total-size'
-alias lsa='lsd -lah'
-# alias ll='lsd -lh'
-# alias ll='eza -alg --icons --git --all --time-style=long-iso'
-alias ll='eza -alg --icons --git --all --sort=newest --time-style=long-iso'
-alias la='lsd -lAh'
+alias ll='eza -alg --icons --git --all --time-style=long-iso'
+# alias ll='eza -alg --icons --git --all --sort=newest --time-style=long-iso'
 
 alias rr='ranger'
 
 # fzf-tab 설정
 zstyle ':completion:*' extra-dirs true
 zstyle ':fzf-tab:complete:git-*' fzf-preview 'git show --color=always {} | less -R'
-zstyle ':fzf-tab:*' color 'bg+:#09ff00,fg+:#ffffff'
 
 # zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 zstyle ':fzf-tab:*' border rounded
-zstyle ':fzf-tab:complete:*' fzf-preview-window 'right:70%:wrap'
+# zstyle ':fzf-tab:complete:*' fzf-preview-window 'right:70%:wrap'
+zstyle ':fzf-tab:complete:*' fzf '--preview-window=right:70%:wrap'
 
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:*' fzf-preview-window 'up:100%:wrap'
 zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -alg --icons=always --git --sort=oldest --time-style=long-iso --width=1 --color=always --long $realpath'
+zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'eza -alg --icons=always --git --sort=oldest --time-style=long-iso --width=1 --color=always --long $realpath'
+zstyle ':fzf-tab:*' color 'fg:#ffffff, fg+:#00FF00, bg+:#09ff00'
+# zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:#00FF00 --bind=tab:accept
 
+export FZF_CTRL_T_OPTS="
+  --height 80% \
+  --layout reverse \
+  --info inline \
+  --border \
+  --preview 'bat -n --color=always {}' \
+  --preview-window right,60% \
+  --bind 'ctrl-/:change-preview-window(99%|hidden|)' \
+  --color 'fg:#ffffff,fg+:#00FF00,bg:#000000,preview-bg:#000000,border:#ffffff'
+"
+
+# export FZF_CTRL_T_OPTS="
+#   --walker-skip .git,node_modules,target
+
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
 
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
