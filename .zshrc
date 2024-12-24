@@ -180,3 +180,6 @@ eval "$(direnv hook zsh)"
 eval "$(fzf --zsh)"
 
 source /Users/sangmin/.config/broot/launcher/bash/br
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
