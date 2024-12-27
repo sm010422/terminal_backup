@@ -135,6 +135,7 @@ alias -g ......='../../../../..'
 
 # LSD config
 alias l='lsd -lah --git --date=+%Y-%m-%d\ %H:%M'
+alias lt='lsd -lah -t -r --git --date=+%Y-%m-%d\ %H:%M'
 alias lts='lsd -lah --git --date=+%Y-%m-%d\ %H:%M --total-size'
 alias ll='eza -alg --icons --git --all --time-style=long-iso'
 # alias ll='eza -alg --icons --git --all --sort=newest --time-style=long-iso'
@@ -154,9 +155,12 @@ zstyle ':fzf-tab:complete:*' fzf '--preview-window=right:70%:wrap'
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:*' fzf-preview-window 'up:100%:wrap'
 zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -alg --icons=always --git --sort=oldest --time-style=long-iso --width=1 --color=always --long $realpath'
-zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'eza -alg --icons=always --git --sort=oldest --time-style=long-iso --width=1 --color=always --long $realpath'
-zstyle ':fzf-tab:*' color 'fg:#ffffff, fg+:#00FF00, bg+:#09ff00'
+# zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'eza -alg --icons=always --git --sort=oldest --time-style=long-iso --width=1 --color=always --long $realpath'
+zstyle ':fzf-tab:complete:nvim:*' fzf-preview \
+'[ -f $realpath ] && bat -n --color=always $realpath || eza -alg --icons=always --git --sort=oldest --time-style=long-iso --width=1 --color=always --long $realpath || true'
+# zstyle ':fzf-tab:*' color 'fg:#ffffff, fg+:#00FF00, bg+:#09ff00'
 # zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:#00FF00 --bind=tab:accept
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:#00FF00 --bind 'ctrl-/:change-preview-window(99%|hidden|)'
 
 export FZF_CTRL_T_OPTS="
   --height 80% \
@@ -172,6 +176,7 @@ export FZF_CTRL_T_OPTS="
 export FZF_CTRL_R_OPTS="
   --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
   --color header:italic
+  --color 'fg:#ffffff,fg+:#00FF00,bg:#000000,preview-bg:#000000,border:#ffffff'
   --header 'Press CTRL-Y to copy command into clipboard'"
 
 eval "$(zoxide init zsh)"
