@@ -154,20 +154,26 @@ zstyle ':fzf-tab:complete:*' fzf '--preview-window=right:70%:wrap'
 
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:*' fzf-preview-window 'up:100%:wrap'
-zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -alg --icons=always --git --sort=oldest --time-style=long-iso --width=1 --color=always --long $realpath'
-# zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'eza -alg --icons=always --git --sort=oldest --time-style=long-iso --width=1 --color=always --long $realpath'
+# zstyle ':fzf-tab:*' fzf-preview-window 'right:80%'
+
+# zoxide fzf-tab config
+zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -alg --all --icons=always --git --time-style=long-iso --width=1 --color=always --long $realpath'
+
+# nvim fzf-tab config
 zstyle ':fzf-tab:complete:nvim:*' fzf-preview \
-'[ -f $realpath ] && bat -n --color=always $realpath || eza -alg --icons=always --git --sort=oldest --time-style=long-iso --width=1 --color=always --long $realpath || true'
-# zstyle ':fzf-tab:*' color 'fg:#ffffff, fg+:#00FF00, bg+:#09ff00'
-# zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:#00FF00 --bind=tab:accept
-zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:#00FF00 --bind 'ctrl-/:change-preview-window(99%|hidden|)'
+'[ -f $realpath ] && bat -n --color=always $realpath || eza -alg --all --icons=always --git --time-style=long-iso --width=1 --color=always --long $realpath || true'
+
+# color config fzf-tab
+zstyle ':fzf-tab:*' fzf-flags \
+  --color=fg:1,fg+:#00FF00,hl:#5C62D6,hl+:#00FF00 \
+  --bind 'ctrl-/:change-preview-window(80%|)'
 
 export FZF_CTRL_T_OPTS="
   --height 80% \
   --layout reverse \
   --info inline \
   --border \
-  --preview 'bat -n --color=always {} || eza -alg --icons=always --git --time-style=long-iso --width=1 --color=always --long {}' \
+  --preview '[[ -d {} ]] && eza -alg --all --icons=always --git --time-style=long-iso --width=1 --color=always --long {} || bat -n --color=always {}'
   --preview-window right,60% \
   --bind 'ctrl-/:change-preview-window(99%|hidden|)' \
   --color 'fg:#ffffff,fg+:#00FF00,bg:#000000,preview-bg:#000000,border:#ffffff'
