@@ -169,7 +169,7 @@ zstyle ':fzf-tab:complete:nvim:*' fzf-preview \
 
 # color config fzf-tab
 zstyle ':fzf-tab:*' fzf-flags \
-  --color=fg:1,fg+:#00FF00,hl:#F07857,hl+:#00FF00 \
+  --color=fg:1,fg+:#00FF00,hl:blue,hl+:#00FF00 \
   --bind 'ctrl-/:change-preview-window(80%|)'
 
 export FZF_CTRL_T_OPTS="
@@ -180,13 +180,13 @@ export FZF_CTRL_T_OPTS="
   --preview '[[ -d {} ]] && eza -alg --all --icons=always --git --time-style=long-iso --width=1 --color=always --long {} || bat -n --color=always {}'
   --preview-window right,60% \
   --bind 'ctrl-/:change-preview-window(99%|hidden|)' \
-  --color 'fg:#ffffff,fg+:#00FF00,hl:#F07857,hl+:#00FF00,bg:#000000,preview-bg:#000000,border:#ffffff'
+  --color 'fg:#ffffff,fg+:#00FF00,hl:blue,hl+:#00FF00,bg:#000000,preview-bg:#000000,border:#ffffff'
 "
 
 export FZF_CTRL_R_OPTS="
   --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
   --color header:italic
-  --color 'fg:#ffffff,fg+:#00FF00,hl:#F07857,hl+:#00FF00,bg:#000000,preview-bg:#000000,border:#ffffff'
+  --color 'fg:#ffffff,fg+:#00FF00,hl:blue,hl+:#00FF00,bg:#000000,preview-bg:#000000,border:#ffffff'
   --header 'Press CTRL-Y to copy command into clipboard'"
 
 eval "$(zoxide init zsh)"
