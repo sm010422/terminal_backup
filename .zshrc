@@ -170,7 +170,7 @@ zstyle ':fzf-tab:complete:nvim:*' fzf-preview \
 # color config fzf-tab
 zstyle ':fzf-tab:*' fzf-flags \
   --color=fg:1,fg+:#00FF00,hl:blue,hl+:#00FF00 \
-  --bind 'ctrl-/:change-preview-window(80%|)'
+  --bind 'ctrl-/:change-preview-window(80%|hidden|)'
 
 export FZF_CTRL_T_OPTS="
   --height 80% \
