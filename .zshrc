@@ -140,7 +140,7 @@ alias lts='lsd -lah --git --date=+%Y-%m-%d\ %H:%M --total-size'
 alias ll='eza -alg --icons --git --all --time-style=long-iso'
 # alias ll='eza -alg --icons --git --all --sort=newest --time-style=long-iso'
 
-alias rr='ranger'
+alias yy='yazi'
 
 # fzf-tab 설정
 zstyle ':completion:*' extra-dirs true
@@ -188,6 +188,8 @@ export FZF_CTRL_R_OPTS="
   --color header:italic
   --color 'fg:#ffffff,fg+:#00FF00,hl:blue,hl+:#00FF00,bg:#000000,preview-bg:#000000,border:#ffffff'
   --header 'Press CTRL-Y to copy command into clipboard'"
+
+autoload -U compinit: compinit
 
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
