@@ -120,7 +120,7 @@ fastfetch
 alias cat='bat --paging never'
 alias gu='gitui'
 alias lg='lazygit'
-alias ldk='lazydocker'
+alias ld='lazydocker'
 alias t='tmux'
 alias live-server='npx live-server'
 alias cd='z'
