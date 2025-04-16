@@ -113,6 +113,10 @@ export EDITOR='nvim'
 
 export PATH=$PATH:~/.npm-global/bin
 
+# oracle SQLcl
+export PATH=/opt/homebrew/Caskroom/sqlcl/24.4.4.086.1931/sqlcl/bin:"$PATH"
+
+
 
 # fastfetch
 fastfetch
@@ -142,6 +146,9 @@ alias ll='eza -alg --icons --git --all --time-style=long-iso'
 # alias ll='eza -alg --icons --git --all --sort=newest --time-style=long-iso'
 
 alias yy='yazi'
+
+alias ta='t attach'
+alias td='t detach'
 
 # fzf-tab 설정
 zstyle ':completion:*' extra-dirs true
