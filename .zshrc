@@ -116,7 +116,8 @@ export PATH=$PATH:~/.npm-global/bin
 # oracle SQLcl
 export PATH=/opt/homebrew/Caskroom/sqlcl/24.4.4.086.1931/sqlcl/bin:"$PATH"
 
-
+# java lombok
+export JAVA_OPTS="-javaagent:$HOME/.local/share/lombok/lombok.jar"
 
 # fastfetch
 fastfetch
