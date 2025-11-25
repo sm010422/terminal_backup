@@ -116,8 +116,19 @@ export PATH=$PATH:~/.npm-global/bin
 # oracle SQLcl
 export PATH=/opt/homebrew/Caskroom/sqlcl/24.4.4.086.1931/sqlcl/bin:"$PATH"
 
+# mysql@8.0
+export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+
 # java lombok
 export JAVA_OPTS="-javaagent:$HOME/.local/share/lombok/lombok.jar"
+
+# java version
+# export JAVA_HOME="$("/usr/libexec/java_home" -v 21)"
+# export PATH="$JAVA_HOME/bin:$PATH"
+
+#java jenv setting
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
 # fastfetch
 fastfetch
@@ -201,11 +212,13 @@ export FZF_CTRL_R_OPTS="
 autoload -U compinit: compinit
 
 eval "$(zoxide init zsh)"
-eval "$(atuin init zsh)"
+# eval "$(atuin init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(fzf --zsh)"
 
-source /Users/sangmin/.config/broot/launcher/bash/br
+source /Users/parksangmin/.config/broot/launcher/bash/br
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+source /Users/parksangmin/.config/broot/launcher/bash/br
