@@ -1,0 +1,69 @@
+# Ghostty config - migrated from iTerm2
+# Generated from com.googlecode.iterm2.plist
+
+# Font
+font-family = MesloLGSDZ Nerd Font
+# font-family = "Noto Sans CJK KR"
+font-size = 13
+font-thicken = true
+# Colors
+background = #000000
+foreground = #ffffff
+cursor-color = #ffffff
+cursor-text = #000000
+selection-background = #b4d4ff
+selection-foreground = #000000
+
+# Cursor style (iTerm2 type 2 = underline)
+cursor-style = block
+cursor-style-blink = false
+
+bold-is-bright = true
+
+# ANSI palette
+palette = 0=#000000
+palette = 1=#ff5454
+palette = 2=#54ff54
+palette = 3=#ffff54
+palette = 4=#5454ff
+palette = 5=#ff54ff
+palette = 6=#54ffff
+palette = 7=#bababa
+palette = 8=#545454
+palette = 9=#ff5454
+palette = 10=#54ff54
+palette = 11=#ffff54
+palette = 12=#5454ff
+palette = 13=#ff54ff
+palette = 14=#54ffff
+palette = 15=#ffffff
+
+# Window
+window-width = 125
+window-height = 35
+
+window-padding-x = 0
+window-padding-y = 0
+window-padding-balance = true
+window-padding-color = extend
+
+# 창 상태 저장
+window-save-state = always
+
+# 클릭으로 커서 이동
+cursor-click-to-move = true
+
+# 타이틀바
+# macos-titlebar-style = tabs
+
+# Option key (iTerm2: left option sends Esc+)
+macos-option-as-alt = left
+
+# Scrollback (unlimited)
+scrollback-limit = 100000
+
+adjust-cell-height =  9%
+
+adjust-cell-width = 6%
+
+adjust-font-baseline = 0
