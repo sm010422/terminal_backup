@@ -144,6 +144,7 @@ alias cd='z'
 alias n='nvim'
 
 alias cl='clear'
+alias ltree='eza --tree --level=2 --long --icons --git'
 
 alias -g ...='../..'
 alias -g ....='../../..'
