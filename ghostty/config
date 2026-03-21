@@ -67,3 +67,5 @@ adjust-cell-height =  9%
 adjust-cell-width = 6%
 
 adjust-font-baseline = 0
+
+font-codepoint-map = U+AC00-U+D7A3,U+1100-U+11FF,U+3130-U+318F=Noto Sans CJK KR
