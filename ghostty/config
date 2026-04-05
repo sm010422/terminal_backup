@@ -2,10 +2,11 @@
 # Generated from com.googlecode.iterm2.plist
 
 # Font
-font-family = MesloLGSDZ Nerd Font
-# font-family = "Noto Sans CJK KR"
+font-family = "MesloLGSDZ Nerd Font"
 font-size = 13
-font-thicken = true
+# font-thicken = true
+
+window-colorspace = display-p3
 # Colors
 background = #000000
 foreground = #ffffff
@@ -42,10 +43,10 @@ palette = 15=#ffffff
 window-width = 125
 window-height = 35
 
-window-padding-x = 0
+# window-padding-x = 0
 window-padding-y = 0
 window-padding-balance = true
-window-padding-color = extend
+# window-padding-color = extend
 
 # 창 상태 저장
 window-save-state = always
@@ -54,7 +55,7 @@ window-save-state = always
 cursor-click-to-move = true
 
 # 타이틀바
-# macos-titlebar-style = tabs
+macos-titlebar-style = hidden
 
 # Option key (iTerm2: left option sends Esc+)
 macos-option-as-alt = left
@@ -62,9 +63,9 @@ macos-option-as-alt = left
 # Scrollback (unlimited)
 scrollback-limit = 100000
 
-adjust-cell-height =  9%
+adjust-cell-height =  3%
 
-adjust-cell-width = 6%
+adjust-cell-width = 3%
 
 adjust-font-baseline = 0
 
