@@ -220,3 +220,6 @@ eval "$(fzf --zsh)"
 source /Users/parksangmin/.config/broot/launcher/bash/br
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Created by `pipx` on 2026-05-07 06:00:09
+export PATH="$PATH:/Users/parksangmin/.local/bin"
