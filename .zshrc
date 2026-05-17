@@ -223,3 +223,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # Created by `pipx` on 2026-05-07 06:00:09
 export PATH="$PATH:/Users/parksangmin/.local/bin"
+
+# Add .NET Core SDK tools
+export PATH="$PATH:/Users/parksangmin/.dotnet/tools"
