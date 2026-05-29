@@ -160,6 +160,8 @@ alias ll='eza -alg --icons --git --all --time-style=long-iso'
 
 alias yy='yazi'
 
+alias cld='claude'
+
 alias ta='t attach'
 alias td='t detach'
 
@@ -226,3 +228,4 @@ export PATH="$PATH:/Users/parksangmin/.local/bin"
 
 # Add .NET Core SDK tools
 export PATH="$PATH:/Users/parksangmin/.dotnet/tools"
+export DOTNET_ROOT=/opt/homebrew/opt/dotnet/libexec
