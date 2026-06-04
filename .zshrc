@@ -219,7 +219,7 @@ eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(fzf --zsh)"
 
-source /Users/parksangmin/.config/broot/launcher/bash/br
+source ~/.config/broot/launcher/bash/br
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
