@@ -1,6 +1,37 @@
 # Ghostty config - migrated from iTerm2
 # Generated from com.googlecode.iterm2.plist
 
+# ==========================================
+# Ghostty macOS Dock 아이콘 스타일 선택 리스트
+
+# 1. 기본 공식 아이콘 (순정 상태의 회색 유령)
+# macos-icon = official
+
+# 2. 블루프린트 (격자 설계도 배경 위의 공학적인 유령)
+# macos-icon = blueprint
+
+# 3. 칠판 (어두운 초록색 칠판 위 분필 느낌의 유령)
+# macos-icon = chalkboard
+
+# 4. 글래스 (빛이 투과하는 투명하고 영롱한 유리 재질)
+# macos-icon = glass
+
+# 5. 홀로그램 (무지갯빛 오로라가 반사되는 메탈릭 유령)
+macos-icon = holographic
+
+# 6. 마이크로칩 (초록색 실리콘 회로 기판 모티브 디자인)
+# macos-icon = microchip
+
+# 7. 페이퍼 (부드러운 종이 질감의 페이퍼 크래프트 스타일)
+# macos-icon = paper
+
+# 8. 레트로 (8비트 고전 컴퓨터 화면 풍의 아날로그 유령)
+# macos-icon = retro
+
+# 9. 엑스레이 (내부 뼈대 레이어가 투명하게 드러나는 스타일)
+# macos-icon = xray
+# ==========================================
+
 # Font
 font-family = "MesloLGSDZ Nerd Font"
 font-size = 13
