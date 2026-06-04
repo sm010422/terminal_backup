@@ -16,7 +16,8 @@ appWatcher = hs.application.watcher.new(function(appName, eventType, appObject)
         -- appName 대신 bundleID를 사용하는 것이 더 정확합니다 (iTerm2의 경우)
         local bundleID = appObject:bundleID()
         
-        if appName == "iTerm2" or bundleID == "com.googlecode.iterm2" then
+        if appName == "iTerm2" or bundleID == "com.googlecode.iterm2"
+            or appName == "Ghostty" or bundleID == "com.mitchellh.ghostty" then
             switchToEnglish()
         end
     end
