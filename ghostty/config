@@ -32,6 +32,8 @@ macos-icon = holographic
 # macos-icon = xray
 # ==========================================
 
+confirm-close-surface = false
+
 # Font
 font-family = "MesloLGSDZ Nerd Font"
 font-size = 13
