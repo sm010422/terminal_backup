@@ -103,3 +103,9 @@ adjust-cell-width = 3%
 adjust-font-baseline = 0
 
 font-codepoint-map = U+AC00-U+D7A3,U+1100-U+11FF,U+3130-U+318F=Noto Sans CJK KR
+
+# 원격 서버 접속 시 터미널 정보(terminfo) 자동 복사
+shell-integration-features = ssh-env,ssh-terminfo
+
+# 호환성 장애 발생 시에만 아래 주석(#)을 제거하여 사용
+# term = xterm-256color
