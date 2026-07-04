@@ -160,6 +160,12 @@ alias ll='eza -alg --icons --git --all --time-style=long-iso'
 
 alias yy='yazi'
 
+alias k=kubectl
+alias kgp='kubectl get pods'
+alias kgpa='kubectl get pods -A'
+alias kd='kubectl describe'
+alias kl='kubectl logs -f'
+
 alias cld='claude'
 
 alias ta='t attach'
