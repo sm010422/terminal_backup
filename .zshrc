@@ -235,3 +235,5 @@ export PATH="$PATH:/Users/parksangmin/.local/bin"
 # Add .NET Core SDK tools
 export PATH="$PATH:/Users/parksangmin/.dotnet/tools"
 export DOTNET_ROOT=/opt/homebrew/opt/dotnet/libexec
+
+export PATH="/opt/homebrew/sbin:$PATH"
