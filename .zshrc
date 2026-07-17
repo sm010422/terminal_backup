@@ -165,6 +165,7 @@ alias kgp='kubectl get pods'
 alias kgpa='kubectl get pods -A'
 alias kd='kubectl describe'
 alias kl='kubectl logs -f'
+compdef __start_kubectl k
 
 alias cld='claude'
 
@@ -237,3 +238,4 @@ export PATH="$PATH:/Users/parksangmin/.dotnet/tools"
 export DOTNET_ROOT=/opt/homebrew/opt/dotnet/libexec
 
 export PATH="/opt/homebrew/sbin:$PATH"
+source <(kubectl completion zsh)
