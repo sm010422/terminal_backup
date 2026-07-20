@@ -167,6 +167,9 @@ alias kd='kubectl describe'
 alias kl='kubectl logs -f'
 compdef __start_kubectl k
 
+# tmux 안에서 ko_KR.UTF-8 로케일 때문에 박스 드로잉 문자 폭 계산이 어긋나 UI가 깨지는 문제 회피
+alias k9s='LC_CTYPE=en_US.UTF-8 k9s'
+
 alias cld='claude'
 
 alias ta='t attach'
@@ -239,3 +242,6 @@ export DOTNET_ROOT=/opt/homebrew/opt/dotnet/libexec
 
 export PATH="/opt/homebrew/sbin:$PATH"
 source <(kubectl completion zsh)
+
+export K9S_CONFIG_DIR="$HOME/.config/k9s"
+export K9S_SCREENDUMP_DIR="$HOME/.config/k9s/screen-dumps"
