@@ -108,4 +108,6 @@ font-codepoint-map = U+AC00-U+D7A3,U+1100-U+11FF,U+3130-U+318F=Noto Sans CJK KR
 shell-integration-features = ssh-env,ssh-terminfo
 
 # 호환성 장애 발생 시에만 아래 주석(#)을 제거하여 사용
-# term = xterm-256color
+term = xterm-256color
+
+grapheme-width-method = legacy
