@@ -152,7 +152,8 @@ alias -g .....='../../../..'
 alias -g ......='../../../../..'
 
 # LSD config
-alias l='lsd -lah --git --date=+%Y-%m-%d\ %H:%M'
+# alias l='lsd -lah --git --date=+%Y-%m-%d\ %H:%M'
+alias l='lsd -lah --git --date=+%Y-%m-%d\ %H:%M --blocks permission,links,user,group,size,date,name'
 alias lt='lsd -lah -t -r --git --date=+%Y-%m-%d\ %H:%M'
 alias lts='lsd -lah --git --date=+%Y-%m-%d\ %H:%M --total-size'
 alias ll='eza -alg --icons --git --all --time-style=long-iso'
@@ -245,3 +246,4 @@ source <(kubectl completion zsh)
 
 export K9S_CONFIG_DIR="$HOME/.config/k9s"
 export K9S_SCREENDUMP_DIR="$HOME/.config/k9s/screen-dumps"
+export PUPPETEER_EXECUTABLE_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
