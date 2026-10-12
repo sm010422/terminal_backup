@@ -226,7 +226,7 @@ export FZF_CTRL_R_OPTS="
 autoload -U compinit: compinit
 
 eval "$(zoxide init zsh)"
-# eval "$(atuin init zsh)"
+eval "$(atuin init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(fzf --zsh)"
 
