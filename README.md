@@ -36,3 +36,4 @@ A backup repository to safely store and synchronize my MacBook terminal and deve
 
 ### 🍎 MacOS Automation
 - `.hammerspoon/` : Hammerspoon script directory for macOS window management and automation
+- `macos/dock.sh` : Restores Dock settings (icon size 35, auto-hide, size locked against mouse resizing). Run `./macos/dock.sh`
