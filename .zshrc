@@ -82,6 +82,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
+setopt COMBINING_CHARS
 export LANG=en_US.UTF-8
 export LC_CTYPE=ko_KR.UTF-8  # 한글 입력을 위해 문자 인코딩을 한국어로 설정
 
@@ -176,7 +177,13 @@ alias cld='claude'
 alias ta='t attach'
 alias td='t detach'
 
-# fzf-tab 설정
+# fzf-tab config
+# workaround: macOS `sort -u` drops Korean candidates as duplicates under en_US.UTF-8
+# replace it with `LC_ALL=C sort -f`: nothing dropped, case-insensitive A-Z, Korean in 가나다 order
+autoload +X -- -ftb-generate-complist
+functions[-ftb-generate-complist]=${functions[-ftb-generate-complist]/"command sort -u -t"/"LC_ALL=C command sort -f -t"}
+# show hidden (dot) files/dirs in completion only (does not affect normal `*` globs)
+_comp_options+=(globdots)
 zstyle ':completion:*' extra-dirs true
 zstyle ':fzf-tab:complete:git-*' fzf-preview 'git show --color=always {} | less -R'
 
@@ -222,8 +229,6 @@ export FZF_CTRL_R_OPTS="
   --color header:italic
   --color 'fg:#ffffff,fg+:#00FF00,hl:blue,hl+:#00FF00,bg:#000000,preview-bg:#000000,border:#ffffff'
   --header 'Press CTRL-Y to copy command into clipboard'"
-
-autoload -U compinit: compinit
 
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
