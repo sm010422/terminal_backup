@@ -2,33 +2,33 @@
 # Generated from com.googlecode.iterm2.plist
 
 # ==========================================
-# Ghostty macOS Dock 아이콘 스타일 선택 리스트
+# Ghostty macOS Dock icon style options
 
-# 1. 기본 공식 아이콘 (순정 상태의 회색 유령)
+# 1. Official (the default gray ghost)
 # macos-icon = official
 
-# 2. 블루프린트 (격자 설계도 배경 위의 공학적인 유령)
+# 2. Blueprint (engineering ghost on a grid blueprint background)
 # macos-icon = blueprint
 
-# 3. 칠판 (어두운 초록색 칠판 위 분필 느낌의 유령)
+# 3. Chalkboard (chalk-drawn ghost on a dark green chalkboard)
 # macos-icon = chalkboard
 
-# 4. 글래스 (빛이 투과하는 투명하고 영롱한 유리 재질)
+# 4. Glass (translucent, light-catching glass material)
 # macos-icon = glass
 
-# 5. 홀로그램 (무지갯빛 오로라가 반사되는 메탈릭 유령)
+# 5. Holographic (metallic ghost with iridescent aurora reflections)
 macos-icon = holographic
 
-# 6. 마이크로칩 (초록색 실리콘 회로 기판 모티브 디자인)
+# 6. Microchip (green silicon circuit board motif)
 # macos-icon = microchip
 
-# 7. 페이퍼 (부드러운 종이 질감의 페이퍼 크래프트 스타일)
+# 7. Paper (soft paper-craft texture)
 # macos-icon = paper
 
-# 8. 레트로 (8비트 고전 컴퓨터 화면 풍의 아날로그 유령)
+# 8. Retro (analog ghost in an 8-bit classic computer screen style)
 # macos-icon = retro
 
-# 9. 엑스레이 (내부 뼈대 레이어가 투명하게 드러나는 스타일)
+# 9. X-ray (see-through style revealing the inner skeleton layer)
 # macos-icon = xray
 # ==========================================
 
@@ -48,11 +48,15 @@ cursor-text = #000000
 selection-background = #b4d4ff
 selection-foreground = #000000
 
-# Cursor style (iTerm2 type 2 = underline)
+# Cursor style
 cursor-style = block
 cursor-style-blink = false
 
-bold-is-bright = true
+# Use bright palette colors for bold text (replaces bold-is-bright, deprecated since 1.2.0)
+bold-color = bright
+
+# Remove dark fringing around red/green text edges
+alpha-blending = linear-corrected
 
 # ANSI palette
 palette = 0=#000000
@@ -81,20 +85,21 @@ window-padding-y = 0
 window-padding-balance = true
 # window-padding-color = extend
 
-# 창 상태 저장
+# Save window state
 window-save-state = always
 
-# 클릭으로 커서 이동
+# Move cursor by clicking
 cursor-click-to-move = true
 
-# 타이틀바
+# Titlebar
 macos-titlebar-style = hidden
 
 # Option key (iTerm2: left option sends Esc+)
 macos-option-as-alt = left
 
-# Scrollback (unlimited)
-scrollback-limit = 100000
+# Scrollback (since 1.4.0 scrollback-limit is interpreted as bytes, so set lines explicitly)
+scrollback-limit-lines = 100000
+scrollback-limit-bytes = unlimited
 
 adjust-cell-height =  3%
 
@@ -104,10 +109,23 @@ adjust-font-baseline = 0
 
 font-codepoint-map = U+AC00-U+D7A3,U+1100-U+11FF,U+3130-U+318F=Noto Sans CJK KR
 
-# 원격 서버 접속 시 터미널 정보(terminfo) 자동 복사
+# Automatically copy terminfo when connecting to remote servers
 shell-integration-features = ssh-env,ssh-terminfo
 
-# 호환성 장애 발생 시에만 아래 주석(#)을 제거하여 사용
-term = xterm-256color
+# Uncomment the line below only if you hit compatibility issues
+# (remote sessions are handled automatically by ssh-env/ssh-terminfo)
+# term = xterm-256color
 
-grapheme-width-method = legacy
+# Grapheme width for Hangul/emoji. Revert to legacy if the prompt cursor gets misaligned
+# grapheme-width-method = legacy
+grapheme-width-method = unicode
+
+# macOS notification when a long command (10s+) finishes while the window is unfocused
+notify-on-command-finish = unfocused
+notify-on-command-finish-after = 10s
+
+# Keep zoom state when navigating between splits
+split-preserve-zoom = navigation
+
+# Quick terminal (global hotkey, requires Accessibility permission)
+keybind = global:option+grave_accent=toggle_quick_terminal
