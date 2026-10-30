@@ -84,7 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 setopt COMBINING_CHARS
 export LANG=en_US.UTF-8
-export LC_CTYPE=ko_KR.UTF-8  # 한글 입력을 위해 문자 인코딩을 한국어로 설정
+export LC_CTYPE=ko_KR.UTF-8  # Set character encoding to Korean for Hangul input
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -252,3 +252,49 @@ source <(kubectl completion zsh)
 export K9S_CONFIG_DIR="$HOME/.config/k9s"
 export K9S_SCREENDUMP_DIR="$HOME/.config/k9s/screen-dumps"
 export PUPPETEER_EXECUTABLE_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+# ==========================================
+# Ghostty desktop notification when a long-running command finishes (works inside tmux too)
+# Implemented manually because Ghostty's notify-on-command-finish does not work inside tmux
+#   NOTIFY_CMD_MIN_SECONDS : minimum duration (seconds) before notifying
+#   NOTIFY_CMD_IGNORE      : interactive commands excluded from notifications
+NOTIFY_CMD_MIN_SECONDS=10
+NOTIFY_CMD_IGNORE=(nvim vim vi less more man top htop btop k9s lazygit lazydocker gitui tmux ssh claude fzf br broot posting lnav mc)
+
+zmodload zsh/datetime
+autoload -Uz add-zsh-hook
+
+_notify_cmd_preexec() {
+  _notify_cmd_start=$EPOCHREALTIME
+  _notify_cmd_line=$1
+}
+
+_notify_cmd_precmd() {
+  local exit_code=$?
+  [[ -z $_notify_cmd_start ]] && return
+  local elapsed=$(( EPOCHREALTIME - _notify_cmd_start ))
+  local cmd=$_notify_cmd_line
+  unset _notify_cmd_start _notify_cmd_line
+
+  (( elapsed < NOTIFY_CMD_MIN_SECONDS )) && return
+  (( ${NOTIFY_CMD_IGNORE[(Ie)${${(z)cmd}[1]}]} )) && return
+
+  # Strip control characters and truncate
+  cmd=${cmd//[$'\e\a\n\r']/ }
+  (( ${#cmd} > 80 )) && cmd="${cmd[1,77]}..."
+
+  local title secs=${$(( elapsed ))%.*}
+  (( exit_code == 0 )) && title="✅ 완료 (${secs}s)" || title="❌ 실패 [${exit_code}] (${secs}s)"
+
+  local seq=$'\e]777;notify;'"${title};${cmd}"$'\a'
+  if [[ -n $TMUX ]]; then
+    local esc=$'\e'
+    printf '\ePtmux;%s\e\\' "${seq//$esc/$esc$esc}" > /dev/tty
+  else
+    printf '%s' "$seq" > /dev/tty
+  fi
+}
+
+add-zsh-hook preexec _notify_cmd_preexec
+add-zsh-hook precmd _notify_cmd_precmd
+# ==========================================
