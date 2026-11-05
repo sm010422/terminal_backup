@@ -37,3 +37,17 @@ A backup repository to safely store and synchronize my MacBook terminal and deve
 ### 🍎 MacOS Automation
 - `.hammerspoon/` : Hammerspoon script directory for macOS window management and automation
 - `macos/dock.sh` : Restores Dock settings (icon size 35, auto-hide, size locked against mouse resizing). Run `./macos/dock.sh`
+
+### 🤖 Claude Code
+- `claude/settings.json` : User settings from `~/.claude/settings.json` (hooks, enabled plugins, marketplaces, TUI). The auto-generated `autoMode` block is stripped because it embeds local paths.
+- `claude/CLAUDE.md` : Global instructions for all projects
+- `claude/hooks/kg-sync.sh` : SessionEnd hook that syncs durable facts from each session into the personal-kg MCP server (runs a headless `claude -p` detached from tmux)
+
+Restore:
+```sh
+mkdir -p ~/.claude/hooks
+cp claude/settings.json claude/CLAUDE.md ~/.claude/
+cp claude/hooks/kg-sync.sh ~/.claude/hooks/ && chmod +x ~/.claude/hooks/kg-sync.sh
+```
+Hooks installed by other tools (`hooks/gitnexus/`, `hooks/herdr-agent-state.sh`) and plugins are not backed up; reinstall GitNexus, herdr, and the plugins listed in `enabledPlugins` (tmux-agent-sidebar: `/plugin marketplace add ~/.tmux/plugins/tmux-agent-sidebar`, then `/plugin install tmux-agent-sidebar@hiroppy`).
+Session data (`projects/`, `history.jsonl`, `file-history/`, caches) is intentionally excluded: it is large and may contain private content.
