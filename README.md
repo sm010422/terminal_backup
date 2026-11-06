@@ -28,6 +28,7 @@ A backup repository to safely store and synchronize my MacBook terminal and deve
 - `.tmux.conf` : Tmux configuration for sessions, window splits, and custom keybindings
 - `tmux/scripts/agent-dot.sh` : Prints a per-window Claude Code agent status mark for the tmux window tabs (red `?` waiting/error > yellow `●` idle > green `●` running), read from tmux-agent-sidebar's `@pane_status`. Restore: `mkdir -p ~/.tmux/scripts && cp tmux/scripts/agent-dot.sh ~/.tmux/scripts/ && chmod +x ~/.tmux/scripts/agent-dot.sh`
 - `tmux/scripts/active-tab-shape.sh` : Switches the active window tab's end caps at runtime to try other Nerd Font shapes (`notch`, `arrow`, `round`, `triangle`, `pixel`, `wave`, ...). The chosen default (rounded) lives in `.tmux.conf` as `@active_cap_l` / `@active_cap_r`; run `tmux source ~/.tmux.conf` to go back to it
+- `tmux/scripts/sidebar-all.sh` : Wraps tmux-agent-sidebar's `prefix + E` (toggle in all windows) and remembers the state, so new windows open a sidebar only while that mode is on (the plugin's `@sidebar_auto_create` is turned off in `.tmux.conf`)
 - `.vimrc` : Basic Vim editor configuration
 - `.viminfo` : Vim operation history and state log
 
