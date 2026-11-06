@@ -26,6 +26,7 @@ A backup repository to safely store and synchronize my MacBook terminal and deve
 
 ### 💻 Editor & Multiplexer
 - `.tmux.conf` : Tmux configuration for sessions, window splits, and custom keybindings
+- `tmux/scripts/agent-dot.sh` : Prints a per-window Claude Code agent status mark for the tmux window tabs (red `?` waiting/error > yellow `●` idle > green `●` running), read from tmux-agent-sidebar's `@pane_status`. Restore: `mkdir -p ~/.tmux/scripts && cp tmux/scripts/agent-dot.sh ~/.tmux/scripts/ && chmod +x ~/.tmux/scripts/agent-dot.sh`
 - `.vimrc` : Basic Vim editor configuration
 - `.viminfo` : Vim operation history and state log
 
