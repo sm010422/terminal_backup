@@ -49,7 +49,7 @@ Hooks run as child processes of the Claude Code session that fired them.
 | Event | Hook | Notes |
 |---|---|---|
 | most events | tmux-agent-sidebar `hook.sh` (plugin) | writes `@pane_status`, `@pane_subagents`, ... to the tmux pane |
-| PreToolUse / PostToolUse / UserPromptSubmit / SessionStart / PreCompact | `~/.tmux/scripts/agent-phase.sh` | writes `@pane_phase`; **not wired yet** — the hooks still have to be added to `~/.claude/settings.json` (until then a running agent always shows as "thinking") |
+| PreToolUse / PostToolUse / UserPromptSubmit / SessionStart / PreCompact | `~/.tmux/scripts/agent-phase.sh` | writes `@pane_phase`; wired in `claude/settings.json` (applies to sessions started after the change) |
 | PreToolUse (Grep, Glob, Bash) / PostToolUse (Bash) | GitNexus `gitnexus-hook.cjs` | Node process per matching tool call |
 | SessionStart | `herdr-agent-state.sh session` | |
 | SessionEnd | `~/.claude/hooks/kg-sync.sh` | **detached headless `claude -p`** that reads the finished transcript and writes to personal-kg; outlives the session briefly and **uses model tokens**. Log: `~/.claude/kg-sync.log` |

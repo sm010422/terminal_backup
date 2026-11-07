@@ -11,6 +11,15 @@
             "statusMessage": "Enriching with GitNexus graph context..."
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.tmux/scripts/agent-phase.sh executing",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -22,6 +31,15 @@
             "command": "node '/Users/parksangmin/.claude/hooks/gitnexus/gitnexus-hook.cjs'",
             "timeout": 10,
             "statusMessage": "Checking GitNexus index freshness..."
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.tmux/scripts/agent-phase.sh thinking",
+            "timeout": 5
           }
         ]
       }
@@ -44,6 +62,37 @@
             "type": "command",
             "command": "bash '/Users/parksangmin/.claude/hooks/herdr-agent-state.sh' session",
             "timeout": 10
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.tmux/scripts/agent-phase.sh thinking",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.tmux/scripts/agent-phase.sh thinking",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.tmux/scripts/agent-phase.sh compacting",
+            "timeout": 5
           }
         ]
       }
