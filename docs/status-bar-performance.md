@@ -72,6 +72,29 @@ set -g status-interval 5
 
 From ~154ms CPU per second to ~43ms per second: **about 72% less**.
 
+## Related: stale background on the agent mark when switching windows
+
+**Symptom.** When moving to another window with the keyboard, a small patch of the previous tab colour stayed behind the
+agent mark for a second or two (e.g. a blue square behind the dot of the tab that had just become inactive).
+
+**Cause.** The mark used to come from `#(agent-dot.sh <window_id> <tab background>)`, and the script printed both the
+glyph colour and the background. tmux caches each `#()` job's output by its expanded command string. Switching windows
+flips a tab between active and inactive, which changes the background argument, so tmux sees a new command. Until that
+new job finishes, tmux keeps drawing the previous output, which still carried the old background.
+
+**Fix, step 1 (`a77ee74`).** Pass only the window ID and print only the glyph colour; the tab format paints the
+background. The command string no longer changes on a window switch, so the stale background is gone.
+
+**Fix, step 2 (`1e8ab7e`).** The script was replaced with tmux formats (see Changes above). There is no cached job output
+at all any more, so this class of residue cannot happen for the mark, and colour changes show up on the next redraw.
+
+**Checked elsewhere.** The Powerline `#()` commands in `status-left` / `status-right` do not change when switching
+windows, so they are not affected.
+
+**Rule for future `#()` jobs in the status line.** Do not put values that differ per window state (active/inactive, tab
+colour, ...) into the command's arguments, and do not print backgrounds from a job. Let the format decide those, or
+compute the whole thing with formats when possible.
+
 ## Not changed (options for later)
 
 - **Replace the Powerline status segments with native tmux formats.** Powerline is now almost all of the remaining
