@@ -1,16 +1,18 @@
 #!/bin/sh
-# agent-dot.sh <window_id> <tab_bg>
+# agent-dot.sh <window_id>
 # Merges the agent state of every pane in a window (tmux-agent-sidebar's @pane_status / @pane_subagents
 # plus @pane_phase from agent-phase.sh) and prints one tmux-styled mark. No agent -> no output.
 # Priority (high -> low): error (red ✕) > waiting (purple ?) > idle/background (green ●)
 #   > subagent (teal ●) > executing (blue ●) > thinking (orange ●) > compacting (grey ●)
 # background = turn ended with a bg shell left; the plugin only clears it while a sidebar is open, so it counts as idle.
-# The mark is drawn on the tab's own background; if the state colour is in the same family as the tab colour,
+# Only the glyph colour is printed; the tab format paints the background, so switching windows never shows a stale
+# background. If the state colour is in the same family as the tab colour (active=colour31 / @mycolor / colour233),
 # the tab text colour (colour233) is used instead.
-bg=${2:-colour233}
+bg=colour233
 best=0
-for p in $(tmux list-panes -t "$1" -F '#{@pane_status}|#{@pane_phase}|#{?@pane_subagents,sub,}' 2>/dev/null); do
-  case "$p" in
+for p in $(tmux list-panes -t "$1" -F '#{?window_active,colour31,#{?@mycolor,#{@mycolor},colour233}}|#{@pane_status}|#{@pane_phase}|#{?@pane_subagents,sub,}' 2>/dev/null); do
+  bg=${p%%|*}
+  case "${p#*|}" in
     error\|*)              r=7 ;;
     waiting\|*)            r=6 ;;
     idle\|*|background\|*) r=5 ;;
@@ -43,4 +45,4 @@ case "$bg" in
   *)                                                                                bgfam= ;;
 esac
 [ "$fam" = "$bgfam" ] && fg=colour233
-printf '#[fg=%s,bg=%s,bold]%s#[nobold] ' "$fg" "$bg" "$glyph"
+printf '#[fg=%s,bold]%s#[nobold] ' "$fg" "$glyph"
