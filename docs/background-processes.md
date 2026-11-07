@@ -3,6 +3,8 @@
 What this terminal setup (tmux + Claude Code) runs on its own, when, and what it costs.
 Everything here runs locally; the only item that uses model tokens is the `kg-sync` hook (see below).
 
+Korean version: [background-processes.ko.md](background-processes.ko.md)
+
 Last reviewed: 2026-11-07
 
 ## Summary
