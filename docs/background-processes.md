@@ -5,7 +5,7 @@ Everything here runs locally; the only item that uses model tokens is the `kg-sy
 
 Korean version: [background-processes.ko.md](background-processes.ko.md)
 
-Last reviewed: 2026-11-07
+Last reviewed: 2026-11-08
 
 ## Summary
 
@@ -13,20 +13,21 @@ Last reviewed: 2026-11-07
 |---|---|---|---|
 | Resident | tmux server | while any tmux session exists | — |
 | Resident | tmux-agent-sidebar TUI (one per window) | only while a sidebar pane is open (`prefix + e` / `prefix + E`) | refreshes every 1s, runs a `ps` sweep per tick |
-| Periodic | Powerline status left/right (`powerline` Python) | every `status-interval` (2s), 2 processes | heaviest periodic item (Python start-up each time) |
-| Periodic | `tmux-continuum` `continuum_save.sh` | every 2s via status-right; actually saves every 15 min | tiny check, resurrect save every 15 min |
+| Periodic | Powerline status left/right (`powerline` Python) | every `status-interval` (5s), 2 processes | heaviest periodic item (Python start-up each time) |
+| Periodic | `tmux-continuum` `continuum_save.sh` | every 5s via status-right; actually saves every 15 min | tiny check, resurrect save every 15 min |
 | Event | tmux hooks | new window / pane focus / pane exit / resurrect save & restore | short-lived |
 | Event | Claude Code hooks | tool use, prompt submit, session start/end, compaction | short-lived; `kg-sync` spawns a detached headless Claude |
 | On demand | key bindings (`prefix + T`, `prefix + E`, ...) | only when pressed | — |
 
 There is **no** always-on helper daemon started by `.tmux.conf` (no `run-shell -b` loop, no `powerline-daemon`).
 
-## Periodic: tmux status bar (`status-interval 2`)
+## Periodic: tmux status bar (`status-interval 5`)
 
 tmux re-runs every `#(...)` in the status line each interval. Each one is a short-lived process.
 
-- **Powerline** (`status-left`, `status-right`): runs `powerline tmux left|right` — a new Python process each time, twice every 2s.
-  Starting `powerline-daemon -q` would make these calls cheap, or raise `status-interval` if CPU matters.
+- **Powerline** (`status-left`, `status-right`): runs `powerline tmux left|right` — a new Python process each time, twice every 5s.
+  Powerline's own config sets `status-interval 2`; `.tmux.conf` overrides it to 5 right after loading Powerline.
+  See [status-bar-performance.md](status-bar-performance.md).
 - **continuum_save.sh** (prepended to `status-right` by tmux-continuum): checks the timestamp every tick and triggers a
   tmux-resurrect save every `@continuum-save-interval` (15 min). The post-save hook writes `~/.tmux/window-colors.txt`
   and keeps the 5 newest resurrect files.

@@ -5,7 +5,7 @@
 
 영문판: [background-processes.md](background-processes.md)
 
-마지막 점검: 2026-11-07
+마지막 점검: 2026-11-08
 
 ## 요약
 
@@ -13,20 +13,21 @@
 |---|---|---|---|
 | 상주 | tmux 서버 | tmux 세션이 하나라도 있는 동안 | — |
 | 상주 | tmux-agent-sidebar TUI (창마다 하나) | 사이드바 pane이 열려 있을 때만 (`prefix + e` / `prefix + E`) | 1초마다 갱신, 매번 `ps`로 백그라운드 작업 확인 |
-| 주기 실행 | Powerline 상태바 왼쪽/오른쪽 (`powerline` Python) | `status-interval`(2초)마다 2개 | 주기 실행 중 가장 무거움 (매번 Python 시작) |
-| 주기 실행 | `tmux-continuum`의 `continuum_save.sh` | status-right를 통해 2초마다 확인, 실제 저장은 15분마다 | 확인 비용은 아주 작음, 15분마다 resurrect 저장 |
+| 주기 실행 | Powerline 상태바 왼쪽/오른쪽 (`powerline` Python) | `status-interval`(5초)마다 2개 | 주기 실행 중 가장 무거움 (매번 Python 시작) |
+| 주기 실행 | `tmux-continuum`의 `continuum_save.sh` | status-right를 통해 5초마다 확인, 실제 저장은 15분마다 | 확인 비용은 아주 작음, 15분마다 resurrect 저장 |
 | 이벤트 | tmux 훅 | 새 창 / pane 포커스 / pane 종료 / resurrect 저장·복원 | 잠깐 실행되고 끝남 |
 | 이벤트 | Claude Code 훅 | 도구 사용, 입력 전송, 세션 시작·종료, 컨텍스트 압축 | 잠깐 실행되고 끝남. `kg-sync`는 분리된 headless Claude를 띄움 |
 | 직접 실행 | 키 바인딩 (`prefix + T`, `prefix + E` 등) | 누를 때만 | — |
 
 `.tmux.conf`가 띄우는 상시 실행 보조 데몬은 **없습니다.** `run-shell -b`로 도는 루프도, `powerline-daemon`도 없습니다.
 
-## 주기 실행: tmux 상태바 (`status-interval 2`)
+## 주기 실행: tmux 상태바 (`status-interval 5`)
 
 tmux는 상태바 안의 `#(...)` 명령을 갱신 주기마다 다시 실행합니다. 각각 잠깐 실행되고 끝나는 프로세스입니다.
 
-- **Powerline** (`status-left`, `status-right`): `powerline tmux left|right`를 실행합니다. 매번 Python 프로세스를 새로 띄우고, 2초마다 두 번 실행됩니다.
-  `powerline-daemon -q`를 켜면 이 호출이 가벼워집니다. CPU가 신경 쓰이면 `status-interval`을 늘리는 방법도 있습니다.
+- **Powerline** (`status-left`, `status-right`): `powerline tmux left|right`를 실행합니다. 매번 Python 프로세스를 새로 띄우고, 5초마다 두 번 실행됩니다.
+  Powerline 설정이 `status-interval 2`를 넣기 때문에, `.tmux.conf`에서 Powerline을 불러온 직후 5로 덮어씁니다.
+  자세한 내용은 [status-bar-performance.ko.md](status-bar-performance.ko.md)를 보세요.
 - **continuum_save.sh** (tmux-continuum이 `status-right` 앞에 붙임): 갱신 때마다 마지막 저장 시각을 확인하고,
   `@continuum-save-interval`(15분)마다 tmux-resurrect 저장을 실행합니다. 저장 후 훅이 `~/.tmux/window-colors.txt`를 쓰고,
   resurrect 저장 파일은 최신 5개만 남깁니다.

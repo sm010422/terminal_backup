@@ -30,6 +30,7 @@ A backup repository to safely store and synchronize my MacBook terminal and deve
 - `tmux/scripts/agent-phase.sh` : Claude Code hook that writes the running agent's phase (`thinking` / `executing` / `compacting`) to the tmux pane option `@pane_phase`; wired up in `claude/settings.json` (PreToolUse, PostToolUse, UserPromptSubmit, SessionStart, PreCompact)
 - Restore the scripts: `mkdir -p ~/.tmux/scripts && cp tmux/scripts/*.sh ~/.tmux/scripts/ && chmod +x ~/.tmux/scripts/*.sh`
 - `docs/background-processes.md` : What tmux and Claude Code run on their own (resident, periodic, hook-driven) and what was removed on purpose (Korean: `docs/background-processes.ko.md`)
+- `docs/status-bar-performance.md` : Measured CPU cost of the tmux status bar, what was changed to cut it (agent mark as tmux formats, `status-interval 5`) and what was left as is (Korean: `docs/status-bar-performance.ko.md`)
 - `tmux/scripts/active-tab-shape.sh` : Switches the active window tab's end caps at runtime to try other Nerd Font shapes (`notch`, `arrow`, `round`, `triangle`, `pixel`, `wave`, ...). The chosen default (rounded) lives in `.tmux.conf` as `@active_cap_l` / `@active_cap_r`; run `tmux source ~/.tmux.conf` to go back to it
 - `tmux/scripts/sidebar-all.sh` : Wraps tmux-agent-sidebar's `prefix + E` (toggle in all windows) and remembers the state, so new windows open a sidebar only while that mode is on (the plugin's `@sidebar_auto_create` is turned off in `.tmux.conf`)
 - `.vimrc` : Basic Vim editor configuration
