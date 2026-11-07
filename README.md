@@ -26,7 +26,7 @@ A backup repository to safely store and synchronize my MacBook terminal and deve
 
 ### 💻 Editor & Multiplexer
 - `.tmux.conf` : Tmux configuration for sessions, window splits, and custom keybindings
-- `tmux/scripts/agent-dot.sh` : Prints a per-window Claude Code agent status mark for the tmux window tabs (red `✕` error > purple `?` waiting > green `●` idle > teal `●` subagent > blue `●` executing > orange `●` thinking > grey `●` compacting), read from tmux-agent-sidebar's `@pane_status` / `@pane_subagents` and `@pane_phase`
+- `@agent_dot` (in `.tmux.conf`) : Per-window Claude Code agent status mark in the tmux window tabs (red `✕` error > purple `?` waiting > green `●` idle > teal `●` subagent > blue `●` executing > orange `●` thinking > grey `●` compacting), read from tmux-agent-sidebar's `@pane_status` / `@pane_subagents` and `@pane_phase`. Built from tmux formats only, so it spawns no process
 - `tmux/scripts/agent-phase.sh` : Claude Code hook that writes the running agent's phase (`thinking` / `executing` / `compacting`) to the tmux pane option `@pane_phase`; wired up in `claude/settings.json` (PreToolUse, PostToolUse, UserPromptSubmit, SessionStart, PreCompact)
 - Restore the scripts: `mkdir -p ~/.tmux/scripts && cp tmux/scripts/*.sh ~/.tmux/scripts/ && chmod +x ~/.tmux/scripts/*.sh`
 - `docs/background-processes.md` : What tmux and Claude Code run on their own (resident, periodic, hook-driven) and what was removed on purpose (Korean: `docs/background-processes.ko.md`)

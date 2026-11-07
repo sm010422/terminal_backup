@@ -15,7 +15,6 @@ Last reviewed: 2026-11-07
 | Resident | tmux-agent-sidebar TUI (one per window) | only while a sidebar pane is open (`prefix + e` / `prefix + E`) | refreshes every 1s, runs a `ps` sweep per tick |
 | Periodic | Powerline status left/right (`powerline` Python) | every `status-interval` (2s), 2 processes | heaviest periodic item (Python start-up each time) |
 | Periodic | `tmux-continuum` `continuum_save.sh` | every 2s via status-right; actually saves every 15 min | tiny check, resurrect save every 15 min |
-| Periodic | `~/.tmux/scripts/agent-dot.sh` | every 2s, once per window | one `tmux list-panes` call |
 | Event | tmux hooks | new window / pane focus / pane exit / resurrect save & restore | short-lived |
 | Event | Claude Code hooks | tool use, prompt submit, session start/end, compaction | short-lived; `kg-sync` spawns a detached headless Claude |
 | On demand | key bindings (`prefix + T`, `prefix + E`, ...) | only when pressed | — |
@@ -31,7 +30,8 @@ tmux re-runs every `#(...)` in the status line each interval. Each one is a shor
 - **continuum_save.sh** (prepended to `status-right` by tmux-continuum): checks the timestamp every tick and triggers a
   tmux-resurrect save every `@continuum-save-interval` (15 min). The post-save hook writes `~/.tmux/window-colors.txt`
   and keeps the 5 newest resurrect files.
-- **agent-dot.sh** (`@agent_dot` in every window-status format): one `tmux list-panes` per window, prints the agent mark.
+- **Agent mark** (`@agent_dot` in every window-status format) is a plain tmux format evaluated inside the server, so it
+  spawns no process. It replaced `agent-dot.sh`, which ran once per window every tick (~9ms CPU each).
 
 ## Event-driven: tmux hooks and bindings
 

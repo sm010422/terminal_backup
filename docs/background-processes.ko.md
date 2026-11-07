@@ -15,7 +15,6 @@
 | 상주 | tmux-agent-sidebar TUI (창마다 하나) | 사이드바 pane이 열려 있을 때만 (`prefix + e` / `prefix + E`) | 1초마다 갱신, 매번 `ps`로 백그라운드 작업 확인 |
 | 주기 실행 | Powerline 상태바 왼쪽/오른쪽 (`powerline` Python) | `status-interval`(2초)마다 2개 | 주기 실행 중 가장 무거움 (매번 Python 시작) |
 | 주기 실행 | `tmux-continuum`의 `continuum_save.sh` | status-right를 통해 2초마다 확인, 실제 저장은 15분마다 | 확인 비용은 아주 작음, 15분마다 resurrect 저장 |
-| 주기 실행 | `~/.tmux/scripts/agent-dot.sh` | 2초마다 창마다 한 번 | `tmux list-panes` 한 번 |
 | 이벤트 | tmux 훅 | 새 창 / pane 포커스 / pane 종료 / resurrect 저장·복원 | 잠깐 실행되고 끝남 |
 | 이벤트 | Claude Code 훅 | 도구 사용, 입력 전송, 세션 시작·종료, 컨텍스트 압축 | 잠깐 실행되고 끝남. `kg-sync`는 분리된 headless Claude를 띄움 |
 | 직접 실행 | 키 바인딩 (`prefix + T`, `prefix + E` 등) | 누를 때만 | — |
@@ -31,7 +30,8 @@ tmux는 상태바 안의 `#(...)` 명령을 갱신 주기마다 다시 실행합
 - **continuum_save.sh** (tmux-continuum이 `status-right` 앞에 붙임): 갱신 때마다 마지막 저장 시각을 확인하고,
   `@continuum-save-interval`(15분)마다 tmux-resurrect 저장을 실행합니다. 저장 후 훅이 `~/.tmux/window-colors.txt`를 쓰고,
   resurrect 저장 파일은 최신 5개만 남깁니다.
-- **agent-dot.sh** (모든 탭 포맷의 `@agent_dot`): 창마다 `tmux list-panes`를 한 번 실행해서 에이전트 상태 점을 출력합니다.
+- **에이전트 상태 점** (모든 탭 포맷의 `@agent_dot`): tmux 서버 안에서 계산되는 포맷이라 프로세스를 띄우지 않습니다.
+  예전에는 `agent-dot.sh`가 갱신 때마다 창마다 한 번씩 실행됐습니다(창 하나당 CPU 약 9ms).
 
 ## 이벤트로 실행: tmux 훅과 키 바인딩
 
