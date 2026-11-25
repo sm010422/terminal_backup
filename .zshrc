@@ -301,7 +301,7 @@ add-zsh-hook precmd _notify_cmd_precmd
 
 # nvm (Homebrew)
 export NVM_DIR="$HOME/.nvm"
-# exec zsh가 물려받은 nvm 경로 제거: nvm은 이미 PATH에 있는 자기 경로를 제자리에서 바꾸기만 해서 /opt/homebrew/bin 뒤로 밀림
+# Drop nvm paths inherited through exec zsh: nvm only rewrites its own entry in place, so it would stay behind /opt/homebrew/bin
 path=(${path:#$NVM_DIR/*}); unset NVM_BIN NVM_INC
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
